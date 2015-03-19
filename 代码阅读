@@ -1,0 +1,30 @@
+代码阅读
+syncthing的main函数
+1.获取默认的配置文件路径
+2.判断系统类型 - 主要用于确定log文件位置和console模式
+3.获取命令行参数设置
+4.设置console模式，设置配置文件夹
+5.显示版本信息
+6.如果需要的话生成目录结构
+7.判断是否需要升级 - 升级软件
+8.如果需要的话，重置配置文件夹
+9.如果不是重启，直接进入使用syncthing的主流程syncthingMain
+10.如果是重启，进入监视流程 - 监视程序重启信号monitorMain
+
+syncthingMain函数
+1.设置GC和CPU核数
+2.载入证书
+3.生成唯一关键key
+4.加载配置文件
+5.如果profiler文件存在，用go runtime启动http server根据profiler
+6.对上下载进行传输数据限制
+7.处理数据库和文件夹的问题
+8.部署web ui界面
+9.通go runtime用浏览器打开URL地址
+
+
+monitorMain函数
+1.处理log文件问题
+2.进入一个是循环死等，处理命令行拷贝和命令行模式
+3.启动多个go runtime去执行
+4.强制结束和进入下一轮
